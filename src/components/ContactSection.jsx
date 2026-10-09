@@ -5,7 +5,7 @@ import useWindowSize from '../hooks/useWindowSize'
 
 //REMINDER ..........update my conatct - to connect to recieve in gmail when sent
 
-                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                
 
 function ContactSection() {
 
@@ -55,7 +55,7 @@ function ContactSection() {
   
   // submit form
   async function handleSubmit(event) {
-    event.preventDefault()
+    if (event) event.preventDefault()
     setIsSending(true)
     setErrorMessage('')
 
@@ -91,10 +91,11 @@ function ContactSection() {
       setTimeout(() => setIsSent(false), 4000)
 
     } catch (error) {
+      console.error('EmailJS Error:', error)
       setIsSending(false)
       setErrorMessage('Server error, please try again later.')
     }
-  }                                                                                                                                                                                 
+  }                                                                                                                                                                                                                                                                                                                                                                 
 
   //  style for inputs 
   const inputStyle = {
@@ -102,7 +103,7 @@ function ContactSection() {
     padding: '14px 16px',
     background: 'rgba(255,255,255,0.05)',
     border: '1px solid #2d1b69',
-    borderRadius: '8px',                                                                                                                                                                                
+    borderRadius: '8px',                                                                                                                                                                                                                                                                                                                                                            
     color: '#fff',
     fontSize: '14px',
     fontFamily: 'Poppins, sans-serif',
@@ -179,7 +180,7 @@ function ContactSection() {
         </div>
 
         {/* in thes right is form */}
-        <div style={{ flex: 1.2 }}>
+        <form onSubmit={handleSubmit} style={{ flex: 1.2 }}>
 
           {/* success message */}
           {isSent && (
@@ -207,6 +208,7 @@ function ContactSection() {
             onMouseLeave={(e) => handleHover(e, false)}
             onFocus={(e) => handleHover(e, true)}
             onBlur={(e) => handleHover(e, false)}
+            required
           />
 
           <input
@@ -220,6 +222,7 @@ function ContactSection() {
             onMouseLeave={(e) => handleHover(e, false)}
             onFocus={(e) => handleHover(e, true)}
             onBlur={(e) => handleHover(e, false)}
+            required
           />
 
           <textarea
@@ -233,10 +236,11 @@ function ContactSection() {
             onMouseLeave={(e) => handleHover(e, false)}
             onFocus={(e) => handleHover(e, true)}
             onBlur={(e) => handleHover(e, false)}
+            required
           />
 
           <button
-            onClick={handleSubmit}
+            type="submit"
             disabled={isSending}
             style={{
               width: '100%',
@@ -268,7 +272,7 @@ function ContactSection() {
             {isSending ? 'Sending...' : 'Send message'}
           </button>
 
-        </div>
+        </form>
       </div>
     </section>
   )
