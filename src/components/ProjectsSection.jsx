@@ -1,7 +1,7 @@
 import React from 'react'
 import useWindowSize from '../hooks/useWindowSize'
 
-// project data, edit later, add links mn
+// updtae my project sect..add
 const projectList = [
   {
     id: 1,
@@ -40,6 +40,13 @@ const projectList = [
     title: 'Awesometodos (ToDo App)',
     image: '/project5.jpg',
     link: 'https://awesometodosapp-woaw.onrender.com/'
+  },
+   {
+    id: 6,
+    category: 'Projects',
+    title: 'UServe',
+    image: '/project6.jpg',
+    link: 'https://www.figma.com/proto/0OwNtlA77zluRhCFkdzUoS/Website?node-id=2459-377&p=f&t=EBX07Es9bYO04qWS-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2459%3A377'
   },
 ]
 

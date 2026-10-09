@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import useWindowSize from '../hooks/useWindowSize'
+
+
+//REMINDER ..........update my conatct - to connect to recieve in gmail when sent
+
+                                                                                                                                                                
 
 function ContactSection() {
 
-  // screen width (...still learning )
+  // screen width (...learning )
   const screenWidth = useWindowSize()
 
   // basic responsive checks
@@ -39,7 +45,7 @@ function ContactSection() {
     const inputName = event.target.name
     const inputValue = event.target.value
 
-    // updating state (spread operator still confusing sometimes but yeah)
+    // updating state (spread operator)
     setFormValues({
       ...formValues,
       [inputName]: inputValue
@@ -53,39 +59,39 @@ function ContactSection() {
     setIsSending(true)
     setErrorMessage('')
 
+    const templateParams = {
+      name: formValues.name,
+      email: formValues.email,
+      message: formValues.message,
+    }
+
     try {
-      const response = await fetch('https://portfolio-backend-4asm.onrender.com/api/contact', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(formValues),
-})
+      await emailjs.send(
+        'service_9kpwp5x',                  // myService ID
+        'template_fb069sn',                  // template ID
+        templateParams,
+        'S2tQkz9PQ47MKxv2Z'                    // myPublic Key                     
 
-      const data = await response.json()
+      )
+
       setIsSending(false)
+      setIsSent(true)
 
-      if (data.success) {
-        setIsSent(true)
+      // clear form after sending
+      setFormValues({
+        name: '',
+        email: '',
+        message: ''
+      })
 
-        // clear form after sending
-        setFormValues({
-          name: '',
-          email: '',
-          message: ''
-        })
-
-        // hide success message after few secs
-        setTimeout(() => setIsSent(false), 4000)
-      } else {
-        setErrorMessage(data.error || 'something went wrong, try again')
-      }
+      // hide success message after few secs
+      setTimeout(() => setIsSent(false), 4000)
 
     } catch (error) {
       setIsSending(false)
       setErrorMessage('Server error, please try again later.')
     }
-  }
+  }                                                                    
 
   //  style for inputs 
   const inputStyle = {
@@ -93,7 +99,7 @@ function ContactSection() {
     padding: '14px 16px',
     background: 'rgba(255,255,255,0.05)',
     border: '1px solid #2d1b69',
-    borderRadius: '8px',
+    borderRadius: '8px',                                                                                         
     color: '#fff',
     fontSize: '14px',
     fontFamily: 'Poppins, sans-serif',

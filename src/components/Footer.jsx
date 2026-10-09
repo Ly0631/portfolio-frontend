@@ -1,7 +1,7 @@
 import React from 'react'
 import useWindowSize from '../hooks/useWindowSize'
 
-// list of my social links (icons with links, might add latr)
+// list of my social links (icons with links)
 const socialMediaList = [
   {
     label: 'Facebook',

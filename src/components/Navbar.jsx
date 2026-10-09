@@ -19,6 +19,13 @@ function Navbar() {
   const menuLinks = ['Home', 'About', 'Skill', 'Projects', 'Contact']
 
 
+  // Helper function to safely get DOM element ID
+  const getSectionId = (item) => {
+    const lower = item.toLowerCase()
+    if (lower === 'skill') return document.getElementById('skills') ? 'skills' : 'skill'
+    if (lower === 'projects') return document.getElementById('projects') ? 'projects' : 'project'
+    return lower
+  }
 
 
   useEffect(() => {
@@ -34,12 +41,13 @@ function Navbar() {
 
     const observer = new IntersectionObserver(handleSections, {
       root: null,
-      threshold: 0.6, 
+      threshold: 0.2, 
     })
 
     
     menuLinks.forEach((item) => {
-      const sectionElement = document.getElementById(item.toLowerCase())
+      const sectionId = getSectionId(item)
+      const sectionElement = document.getElementById(sectionId)
       if (sectionElement) {
         observer.observe(sectionElement)
       }
@@ -52,7 +60,7 @@ function Navbar() {
 
   // scroll to section when clicked
   function goToSection(sectionName) {
-    const id = sectionName.toLowerCase()
+    const id = getSectionId(sectionName)
     const element = document.getElementById(id)
 
     if (element) {
@@ -124,7 +132,8 @@ function Navbar() {
         }}>
           {menuLinks.map((item) => {
 
-            const isActive = currentSection === item.toLowerCase()
+            const sectionId = getSectionId(item)
+            const isActive = currentSection === sectionId || currentSection === item.toLowerCase()
 
             return (
               <li key={item}>
@@ -184,7 +193,8 @@ function Navbar() {
         }}>
           {menuLinks.map((item) => {
 
-            const isActive = currentSection === item.toLowerCase()
+            const sectionId = getSectionId(item)
+            const isActive = currentSection === sectionId || currentSection === item.toLowerCase()
 
             return (
               <button

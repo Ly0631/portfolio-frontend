@@ -19,6 +19,8 @@ function SkillSection() {
     'HTML & CSS',
     'React',
     'JavaScript',
+    'Figma',
+    'Logo Designing',
   ]
 
   return (
