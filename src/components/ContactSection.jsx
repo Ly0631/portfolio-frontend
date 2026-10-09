@@ -70,8 +70,8 @@ function ContactSection() {
 
     try {
       await emailjs.send(
-        'service_9kpwp5x',                  // myService ID
-        'template_xzsr17d',                 // template ID
+        'service_gleierp',                  // myService ID
+        'template_nnj9sns',                 // template ID
         templateParams,
         'S2tQkz9PQ47MKxv2Z'                    // myPublic Key                    
 
