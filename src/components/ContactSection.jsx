@@ -5,7 +5,7 @@ import useWindowSize from '../hooks/useWindowSize'
 
 //REMINDER ..........update my conatct - to connect to recieve in gmail when sent
 
-                                                                                                                                                                
+                                                                                                                                                                                                  
 
 function ContactSection() {
 
@@ -61,7 +61,10 @@ function ContactSection() {
 
     const templateParams = {
       name: formValues.name,
+      from_name: formValues.name,
       email: formValues.email,
+      from_email: formValues.email,
+      reply_to: formValues.email,
       message: formValues.message,
     }
 
@@ -70,7 +73,7 @@ function ContactSection() {
         'service_9kpwp5x',                  // myService ID
         'template_fb069sn',                  // template ID
         templateParams,
-        'S2tQkz9PQ47MKxv2Z'                    // myPublic Key                     
+        'S2tQkz9PQ47MKxv2Z'                    // myPublic Key                    
 
       )
 
@@ -91,7 +94,7 @@ function ContactSection() {
       setIsSending(false)
       setErrorMessage('Server error, please try again later.')
     }
-  }                                                                    
+  }                                                                                                                                                                                 
 
   //  style for inputs 
   const inputStyle = {
@@ -99,7 +102,7 @@ function ContactSection() {
     padding: '14px 16px',
     background: 'rgba(255,255,255,0.05)',
     border: '1px solid #2d1b69',
-    borderRadius: '8px',                                                                                         
+    borderRadius: '8px',                                                                                                                                                                                
     color: '#fff',
     fontSize: '14px',
     fontFamily: 'Poppins, sans-serif',
